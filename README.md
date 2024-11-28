@@ -3,7 +3,7 @@
 ---
 
 ## Table of Contents
-- [VGG-16 Image Classification Model](#VGG-16 Image Classification Model)
+- [VGG-16 Image Classification Model](#VGG-16-Image-Classification-Model)
 - [Overview](#overview)
 - [Features](#features)
 - [Code Structure](#code-structure)
@@ -23,49 +23,6 @@ VGG-16 is a convolutional neural network architecture developed by the Visual Ge
 ## Overview
 
 The VGG-16 model is a 16-layer deep convolutional neural network primarily designed for image classification tasks. It has achieved state-of-the-art results on benchmarks like ImageNet, a large visual database designed for use in visual object recognition software research.
-
-## Architecture
-
-The VGG-16 model consists of 16 layers with learnable weights, specifically:
-- **13 Convolutional Layers**: Using small 3x3 filters for capturing fine details.
-- **3 Fully Connected Layers**: Used for dense feature extraction.
-- **Max-Pooling Layers**: Each set of convolutional layers is followed by a max-pooling layer that reduces spatial dimensions.
-- **ReLU Activation**: Each convolutional layer uses a ReLU activation function to introduce non-linearity.
-- **Softmax Output Layer**: For classification tasks, the final layer is a softmax layer with 1000 outputs (for ImageNet).
-
-The model is structured into blocks as follows:
-1. **Block 1**: 2 convolutional layers followed by a max-pooling layer.
-2. **Block 2**: 2 convolutional layers followed by a max-pooling layer.
-3. **Block 3**: 3 convolutional layers followed by a max-pooling layer.
-4. **Block 4**: 3 convolutional layers followed by a max-pooling layer.
-5. **Block 5**: 3 convolutional layers followed by a max-pooling layer.
-6. **Fully Connected Layers**: Three fully connected layers at the end with ReLU and softmax activations.
-
-## Model Summary
-
-```Layer (type)                         ┃ Output Shape                ┃         Param # ┃
-┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
-│ input_layer_1 (InputLayer)           │ (None, 224, 224, 3)         │               0 │
-├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ vgg16 (Functional)                   │ (None, 7, 7, 512)           │      14,714,688 │
-├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ flatten (Flatten)                    │ (None, 25088)               │               0 │
-├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ dropout (Dropout)                    │ (None, 25088)               │               0 │
-├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ quantum_inspired_feature_map         │ (None, 16)                  │         401,424 │
-│ (QuantumInspiredFeatureMap)          │                             │                 │
-├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ dense (Dense)                        │ (None, 128)                 │           2,176 │
-├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ dropout_1 (Dropout)                  │ (None, 128)                 │               0 │
-├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
-│ dense_1 (Dense)                      │ (None, 6)                   │             774 │
-└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
- Total params: 15,119,062 (57.67 MB)
- Trainable params: 404,374 (1.54 MB)
- Non-trainable params: 14,714,688 (56.13 MB)
-```
 
 # Applying Transfer Learning to VGG-16
 
@@ -186,6 +143,32 @@ The model utilizes the following callback:
 - **LearningRateScheduler**: Dynamically adjusts the learning rate based on the training epoch.
 
 ---
+
+## Model Summary
+
+```Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ input_layer_1 (InputLayer)           │ (None, 224, 224, 3)         │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ vgg16 (Functional)                   │ (None, 7, 7, 512)           │      14,714,688 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ flatten (Flatten)                    │ (None, 25088)               │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout (Dropout)                    │ (None, 25088)               │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ quantum_inspired_feature_map         │ (None, 16)                  │         401,424 │
+│ (QuantumInspiredFeatureMap)          │                             │                 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense (Dense)                        │ (None, 128)                 │           2,176 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_1 (Dropout)                  │ (None, 128)                 │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_1 (Dense)                      │ (None, 6)                   │             774 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 15,119,062 (57.67 MB)
+ Trainable params: 404,374 (1.54 MB)
+ Non-trainable params: 14,714,688 (56.13 MB)
+```
 
 ## Advantages of Quantum Transfer Learning with VGG-16
 
