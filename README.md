@@ -17,10 +17,11 @@
 
 ---
 
-
 # VGG-16 Image Classification Model
 
 VGG-16 is a convolutional neural network architecture developed by the Visual Geometry Group at the University of Oxford. It has been widely used in image recognition tasks due to its simple but highly effective structure. This README file provides an overview of the model, its architecture, and usage.
+
+---
 
 ## Overview
 
@@ -51,6 +52,8 @@ Transfer learning is a technique that allows us to use the VGG-16 model, pre-tra
 # What are Quanvolutional Neural Networks (QNNs)?
 
 Quanvolutional neural networks apply quantum circuits to classical input data, encoding features through quantum operations. Quantum circuits provide a unique transformation space that may capture intricate patterns, potentially leading to higher accuracy and robustness in certain classification tasks. In this project, QNNs are added to the last few layers of VGG-16, enabling a hybrid quantum-classical model for transfer learning.
+
+---
 
 ## Quantum Circuit Layers
 In this model:
@@ -175,6 +178,8 @@ The model utilizes the following callback:
  Trainable params: 404,374 (1.54 MB)
  Non-trainable params: 14,714,688 (56.13 MB)
 ```
+
+---
 
 ## Advantages of Quantum Transfer Learning with VGG-16
 
