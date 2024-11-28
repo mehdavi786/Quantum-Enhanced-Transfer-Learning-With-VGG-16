@@ -70,22 +70,128 @@ In this model:
 - **Quantum Layers (Quanvolutional)**: Quantum circuits are applied to enhance features extracted from VGG-16’s convolutional layers.
 - **Hybrid Quantum-Classical Layers**: After quantum processing, features are processed by a classical dense layer for final classification.
 
-## Model Summary
-1. VGG-16 convolutional layers up to a specific layer are frozen and used as is.
-2. The last 5-6 layers of VGG-16 are replaced or augmented with quantum layers and classical dense layers.
-3. A final dense layer with softmax activation provides class predictions.
+# Quantum-Inspired Hybrid Neural Network for Image Classification
 
-## Applying Transfer Learning with Quantum Circuits on VGG-16
+This project implements a hybrid neural network combining **VGG16**, a pre-trained deep learning model, with a custom **Quantum-Inspired Feature Map** layer for advanced feature transformations. The code is structured to train and evaluate the model on the Intel Image Classification dataset.
 
-1. **Freeze Convolutional Layers**: Freeze the pre-trained convolutional layers in VGG-16, using them as feature extractors.
-  
-2. **Quantum Layer Integration**: Replace or add quantum circuits to the final layers of VGG-16:
-   - **Quantum Encoding**: Each data point is encoded into a quantum state using quantum circuits (e.g., parameterized rotations).
-   - **Quantum Feature Extraction**: Quantum circuits are applied to process the encoded data, capturing complex transformations.
-  
-3. **Hybrid Model Training**:
-   - **Compile the Model**: The model is compiled using an optimizer and loss function suitable for hybrid quantum-classical layers.
-   - **Train the Hybrid Layers**: Only the quantum and subsequent classical dense layers are trained on the new dataset.
+---
+
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Code Structure](#code-structure)
+- [Model Architecture](#model-architecture)
+- [Quantum-Inspired Feature Map](#quantum-inspired-feature-map)
+- [Image Augmentation](#image-augmentation)
+- [Learning Rate Scheduler](#learning-rate-scheduler)
+- [Callbacks](#callbacks)
+
+---
+
+## Overview
+
+This project showcases an innovative approach to image classification by integrating quantum-inspired techniques into a classical deep learning framework:
+- The **VGG16 model** is used for feature extraction.
+- A **custom feature transformation layer** inspired by quantum computing enhances the representational power of extracted features.
+- Dense layers further refine the features, followed by a softmax output layer for classification.
+
+The dataset used is the **Intel Image Classification Dataset**, containing six distinct classes.
+
+---
+
+## Features
+
+### Key Features of the Code:
+1. **Pre-trained Base Model**: The code uses VGG16 pre-trained on ImageNet, leveraging transfer learning to reduce training time and improve performance.
+2. **Quantum-Inspired Feature Map Layer**: A custom Keras layer that applies trainable quantum-inspired transformations.
+3. **Image Augmentation**: Extensive augmentation applied to training images to improve model robustness.
+4. **Learning Rate Scheduler**: Dynamically adjusts learning rate based on training progress.
+5. **Dropout Regularization**: Reduces overfitting by randomly deactivating neurons during training.
+
+---
+
+## Code Structure
+
+### 1. **Imports and Libraries**:
+The code imports necessary libraries like TensorFlow, Keras, NumPy, and image preprocessing tools. It also includes modules for creating and training the model.
+
+### 2. **Input Parameters**:
+The input size for images is `(224, 224, 3)`, matching VGG16's requirements. The number of classes is dynamically detected from the dataset.
+
+### 3. **Custom Quantum-Inspired Layer**:
+A trainable layer that transforms feature vectors with quantum-inspired non-linear operations.
+
+### 4. **VGG16 Model Integration**:
+The VGG16 model is loaded without the top dense layers, and its weights are frozen to retain pre-trained knowledge.
+
+### 5. **Augmentation and Data Generators**:
+The code applies transformations like rotation, zoom, shifts, and flips to enhance the diversity of the training data.
+
+### 6. **Model Compilation**:
+The model uses Adam optimizer, categorical crossentropy loss, and accuracy as the evaluation metric.
+
+### 7. **Training**:
+The training loop includes learning rate adjustment callbacks to ensure stable convergence.
+
+---
+
+## Model Architecture
+
+The model architecture combines the strengths of a pre-trained model with a custom feature transformation layer. The architecture is as follows:
+
+1. **Input Layer**: Accepts images of size `(224, 224, 3)`.
+2. **VGG16 Backbone**: Extracts features from the input images.
+3. **Flatten Layer**: Converts feature maps into a 1D vector.
+4. **Dropout**: Reduces overfitting by randomly deactivating neurons.
+5. **Quantum-Inspired Feature Map**:
+   - Applies a trainable transformation inspired by quantum computing.
+   - Uses sinusoidal activation to mimic quantum phase interactions.
+6. **Dense Layers**: Further refines features with fully connected layers.
+7. **Output Layer**: Produces class probabilities using softmax activation.
+
+---
+
+## Quantum-Inspired Feature Map
+
+The **QuantumInspiredFeatureMap** layer applies a unique transformation:
+- **Trainable Weights**: Each input feature is linearly transformed with weights.
+- **Non-linear Activation**: A sine function is applied, mimicking quantum state evolution.
+- **Normalization**: Ensures the output has normalized amplitudes.
+
+This layer acts as a surrogate for quantum-inspired feature interactions.
+
+---
+
+## Image Augmentation
+
+The code applies various augmentations to the input images to improve generalization:
+- **Random Rotation**: Up to 40 degrees.
+- **Zooming**: Random zoom in/out.
+- **Shifting**: Horizontal and vertical shifts up to 20%.
+- **Flipping**: Random horizontal flips.
+- **Filling**: Uses nearest pixel values to fill gaps caused by transformations.
+
+---
+
+## Learning Rate Scheduler
+
+A custom learning rate scheduler is implemented:
+- **Decay Rate**: Multiplies the learning rate by 0.9 every 5 epochs.
+- **Dynamic Adjustment**: Ensures smooth convergence and prevents oscillations.
+
+This scheduler is passed as a callback to the training process.
+
+---
+
+## Callbacks
+
+The model utilizes the following callback:
+- **LearningRateScheduler**: Dynamically adjusts the learning rate based on the training epoch.
+
+---
+
+This file provides a detailed explanation of the functionality of the code and its modular structure.
+
 
 ## Advantages of Quantum Transfer Learning with VGG-16
 
