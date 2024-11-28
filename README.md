@@ -1,5 +1,21 @@
 # Quantum-Enhanced-Transfer-Learning-With-VGG-16
 
+---
+
+## Table of Contents
+- [VGG-16 Image Classification Model](#VGG-16 Image Classification Model)
+- [Overview](#overview)
+- [Features](#features)
+- [Code Structure](#code-structure)
+- [Model Architecture](#model-architecture)
+- [Quantum-Inspired Feature Map](#quantum-inspired-feature-map)
+- [Image Augmentation](#image-augmentation)
+- [Learning Rate Scheduler](#learning-rate-scheduler)
+- [Callbacks](#callbacks)
+
+---
+
+
 # VGG-16 Image Classification Model
 
 VGG-16 is a convolutional neural network architecture developed by the Visual Geometry Group at the University of Oxford. It has been widely used in image recognition tasks due to its simple but highly effective structure. This README file provides an overview of the model, its architecture, and usage.
@@ -77,33 +93,6 @@ Quanvolutional neural networks apply quantum circuits to classical input data, e
 In this model:
 - **Quantum Layers (Quanvolutional)**: Quantum circuits are applied to enhance features extracted from VGG-16’s convolutional layers.
 - **Hybrid Quantum-Classical Layers**: After quantum processing, features are processed by a classical dense layer for final classification.
-
-# Quantum-Inspired Hybrid Neural Network for Image Classification
-
-This project implements a hybrid neural network combining **VGG16**, a pre-trained deep learning model, with a custom **Quantum-Inspired Feature Map** layer for advanced feature transformations. The code is structured to train and evaluate the model on the Intel Image Classification dataset.
-
----
-
-## Table of Contents
-- [Overview](#overview)
-- [Features](#features)
-- [Code Structure](#code-structure)
-- [Model Architecture](#model-architecture)
-- [Quantum-Inspired Feature Map](#quantum-inspired-feature-map)
-- [Image Augmentation](#image-augmentation)
-- [Learning Rate Scheduler](#learning-rate-scheduler)
-- [Callbacks](#callbacks)
-
----
-
-## Overview
-
-This project showcases an innovative approach to image classification by integrating quantum-inspired techniques into a classical deep learning framework:
-- The **VGG16 model** is used for feature extraction.
-- A **custom feature transformation layer** inspired by quantum computing enhances the representational power of extracted features.
-- Dense layers further refine the features, followed by a softmax output layer for classification.
-
-The dataset used is the **Intel Image Classification Dataset**, containing six distinct classes.
 
 ---
 
