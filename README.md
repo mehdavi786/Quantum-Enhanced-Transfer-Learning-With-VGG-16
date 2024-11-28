@@ -5,6 +5,8 @@
 ## Table of Contents
 - [VGG-16 Image Classification Model](#VGG-16-Image-Classification-Model)
 - [Overview](#overview)
+- [Applying Transfer Learning to VGG-16](#Applying-Transfer-Learning-to-VGG-16)
+- [What are Quanvolutional Neural Networks (QNNs)?](#What-are-Quanvolutional-Neural-Networks-(QNNs)?)
 - [Features](#features)
 - [Code Structure](#code-structure)
 - [Model Architecture](#model-architecture)
@@ -24,6 +26,8 @@ VGG-16 is a convolutional neural network architecture developed by the Visual Ge
 
 The VGG-16 model is a 16-layer deep convolutional neural network primarily designed for image classification tasks. It has achieved state-of-the-art results on benchmarks like ImageNet, a large visual database designed for use in visual object recognition software research.
 
+---
+
 # Applying Transfer Learning to VGG-16
 
 Transfer learning is a technique that allows us to use the VGG-16 model, pre-trained on the ImageNet dataset, as the foundation for a new classification task. By reusing its learned features, we can adapt the model for our own dataset with significantly less training data and time.
@@ -41,6 +45,8 @@ Transfer learning is a technique that allows us to use the VGG-16 model, pre-tra
 - A bias is added to the transformed features.
 3. **Fine-Tuning the Model (Optional):** Additional performance improvements can be achieved by unfreezing a few deeper convolutional layers (near the output). Fine-tuning these layers allows them to adapt slightly to the new data.
 4. **Compile and Train:** With the new layers added and optionally fine-tuned, we compile the model with an appropriate optimizer and loss function and then train it on the new dataset. Training is focused on the new layers (and optionally fine-tuned layers), which enables efficient learning without extensive data or training time.
+
+---
 
 # What are Quanvolutional Neural Networks (QNNs)?
 
