@@ -27,24 +27,28 @@ The model is structured into blocks as follows:
 
 ## Model Summary
 
-```
-Layer (type)              Output Shape              Param #
-================================================================
-Conv2D-1                   (None, 224, 224, 64)      1,792
-Conv2D-2                   (None, 224, 224, 64)      36,928
-MaxPooling2D-3             (None, 112, 112, 64)      0
-Conv2D-4                   (None, 112, 112, 128)     73,856
-Conv2D-5                   (None, 112, 112, 128)     147,584
-MaxPooling2D-6             (None, 56, 56, 128)       0
-...
-Flatten-16                 (None, 25088)             0
-Dense-17                   (None, 4096)              102,764,544
-Dense-18                   (None, 4096)              16,781,312
-Dense-19                   (None, 1000)              4,097,000
-================================================================
-Total params: 138,357,544
-Trainable params: 138,357,544
-Non-trainable params: 0
+```Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ input_layer_1 (InputLayer)           │ (None, 224, 224, 3)         │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ vgg16 (Functional)                   │ (None, 7, 7, 512)           │      14,714,688 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ flatten (Flatten)                    │ (None, 25088)               │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout (Dropout)                    │ (None, 25088)               │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ quantum_inspired_feature_map         │ (None, 16)                  │         401,424 │
+│ (QuantumInspiredFeatureMap)          │                             │                 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense (Dense)                        │ (None, 128)                 │           2,176 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_1 (Dropout)                  │ (None, 128)                 │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_1 (Dense)                      │ (None, 6)                   │             774 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 15,119,062 (57.67 MB)
+ Trainable params: 404,374 (1.54 MB)
+ Non-trainable params: 14,714,688 (56.13 MB)
 ```
 
 # Applying Transfer Learning to VGG-16
@@ -189,9 +193,6 @@ The model utilizes the following callback:
 - **LearningRateScheduler**: Dynamically adjusts the learning rate based on the training epoch.
 
 ---
-
-This file provides a detailed explanation of the functionality of the code and its modular structure.
-
 
 ## Advantages of Quantum Transfer Learning with VGG-16
 
