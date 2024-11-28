@@ -62,6 +62,10 @@ Transfer learning is a technique that allows us to use the VGG-16 model, pre-tra
 - A flattening layer to transform convolutional output to a 1D vector.
 - One or more dense layers, typically with ReLU activation, to learn task-specific patterns.
 - A final output layer with a softmax or sigmoid activation function, depending on the task (multi-class or binary classification).
+3. **Quantum Inspired Feature Map:** A custom layer named QuantumInspiredFeatureMap is introduced to emulate quantum-inspired transformations:
+- The layer includes trainable weights (kernel) and biases (bias) for learning complex feature interactions.
+- A linear transformation is applied to the feature vector using the trainable kernel.
+- A bias is added to the transformed features.
 3. **Fine-Tuning the Model (Optional):** Additional performance improvements can be achieved by unfreezing a few deeper convolutional layers (near the output). Fine-tuning these layers allows them to adapt slightly to the new data.
 4. **Compile and Train:** With the new layers added and optionally fine-tuned, we compile the model with an appropriate optimizer and loss function and then train it on the new dataset. Training is focused on the new layers (and optionally fine-tuned layers), which enables efficient learning without extensive data or training time.
 
